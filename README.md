@@ -7,7 +7,7 @@ This will essentially be an IoT plug, but I will use it to replace the broken on
 
 We'll get the PoC working with MicroPython.
 
-#Board Setup
+# Board Setup
 
 Here's the commands I've been using to start running:
 
@@ -33,11 +33,11 @@ Test client:
 Change the parameter in the python testClient.py to on/off to activate the switch light
 
 
-#TODO
+# TODO
 
-#BOM
+# BOM
 
-#Refs
+# Refs
 Espressif Dev Kit: https://docs.espressif.com/projects/esp-idf/en/stable/hw-reference/get-started-devkitc.html
 
 Micropython ESP32 Binaries: https://micropython.org/download/esp32/
