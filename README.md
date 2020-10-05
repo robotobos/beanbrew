@@ -1,7 +1,7 @@
 # beanbrew
 espressif-based coffee pot controller with Android
 
-#Intro
+# Intro
 
 This will essentially be an IoT plug, but I will use it to replace the broken on/off switch for my coffee pot. 
 
@@ -11,7 +11,7 @@ We'll get the PoC working with MicroPython.
 
 Here's the commands I've been using to start running:
 
-###This is to flash the micropython binary
+### This is to flash the micropython binary
 
 Erase Flash:
 ```esptool.py --chip esp32 --port /dev/ttyUSB0 erase_flash```
@@ -28,6 +28,9 @@ Push Python to board:
 
 Run script on board:
 ```ampy --port /dev/ttyUSB0 run main.py```
+
+Test client:
+Change the parameter in the python testClient.py to on/off to activate the switch light
 
 
 #TODO

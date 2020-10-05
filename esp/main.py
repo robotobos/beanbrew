@@ -14,11 +14,18 @@ wlan = network.WLAN(network.STA_IF)
 wlan.active(True)
 
 #read network config file
-file=open("config.txt")
-apinfo=file.read()
-apinfo=apinfo.split(',')
-ssid=apinfo[0]
-pw=apinfo[1]
+try:
+    file=open("config.txt")
+    apinfo=file.read()
+    apinfo=apinfo.split(',')
+    ssid=apinfo[0]
+    pw=apinfo[1]
+    print(ssid)
+    print(pw)
+except ValueError:
+    print("failed to get config file. abort.")
+    ssid="xfinitywifi"
+
 
 print('connecting to network...')
 wlan.connect(ssid, pw)
@@ -26,7 +33,7 @@ while not wlan.isconnected():
     pass
 print('network config:', wlan.ifconfig())
 p22_green.value(1)
-p23_red(0)
+p23_red.value(0)
 
 #then bind socket listener
 if wlan.isconnected():
