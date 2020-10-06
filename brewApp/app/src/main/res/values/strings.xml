@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">beanbrew</string>
+    <string name="edit_message">coffee_pot_on</string>
+    <string name="button_send">Send</string>
 </resources>
