@@ -40,28 +40,38 @@ if wlan.isconnected():
     deviceip=wlan.ifconfig()[0]
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.bind((deviceip, 8334))
-    sock.listen(5)
+    sock.listen(1)
     print("socket listening on port 8334 on ", deviceip)
 else:
     print("network connect failed")
 
 #loop connections forever
 while True:
-    print("waiting for connection")
-    conn, addr = sock.accept()
-    full_msg=''
-    while True:
-        msg = conn.recv(8)
-        if len(msg) <= 0:
-            break
-        full_msg += msg.decode("utf-8")
-    print(full_msg)
+    # Wait for a connection
+    print('waiting for a connection')
+    connection, client_address = sock.accept()
 
-    if(full_msg=="coffee_pot_on"):
-        print("coffee pot turning on")
-        p34_yellow.value(1)
+    try:
+        print('connection from: ', client_address)
+        # Receive the data in small chunks and retransmit it
+        while True:
+            data = connection.recv(16)
+            print('received data: ', data)
+
+            if data:
+                if(data==b'coffee_pot_on'):
+                    print("coffee pot turning on")
+                    p34_yellow.value(1)
     
-    if(full_msg=="coffee_pot_off"):
-        print("coffee pot turning on")
-        p34_yellow.value(0)
+                if(data==b'coffee_pot_off'):
+                    print("coffee pot turning on")
+                    p34_yellow.value(0)
+            else:
+                print("end of data")
+                break
+    finally:
+        # Clean up the connection
+        connection.close()
+
+
     
